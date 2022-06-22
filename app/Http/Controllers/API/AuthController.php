@@ -46,7 +46,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         try{
-            if (!Auth::attempt($requeste->only('email', 'password'))) {
+            if (!Auth::attempt($request->only('email', 'password'))) {
                 return $this-> error('Dados de autenticação inválidos!!', 401);
             }
 
