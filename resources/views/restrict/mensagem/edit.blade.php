@@ -9,8 +9,8 @@
 </ul>
 @endif
 <form method="POST" action="{{url('mensagem',$mensagem->id)}}">
-    @crsf
-    @mehot('PUT')
+    @csrf
+    @method('PUT')
     <div>
         <label for="titulo">Título</label>
         <input type="text" name="titulo" id="titulo" value="{{$mensagem->titulo}}" required />

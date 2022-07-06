@@ -2,27 +2,39 @@
 
 @section('content')
 <div>
-    <a href="{{url('topico/create')}}" class="button">Adicionar</a>
+    <a href="{{url('mensagem/create')}}" class="button">Adicionar</a>
 </div>
 <table>
     <thead>
         <tr>
-            <th>Tópico</th>
+            <th>Nome</th>
+            <th>Título</th>
+            <th>Mensagem</th>
+            <th>Tópicos</th>
             <th>Editar</th>
             <th>Remover</th>
         </tr>  
     </thead>
     <tbody>
-        @foreach($topicos as $topico)
+        @foreach($mensagens as $mensagem)
         <tr>
-            <td>{{$topico->topico}}</td>
+            <td>{{$mensagem->user->name}}</td>
+            <td>{{$mensagem->titulo}}</td>
+            <td>{{$mensagem->mensagem}}</td>
             <td>
-                <a href="{{route('topico_edit', $topico->id)}}" class="button">
+                @if($mensagem->topicos)
+                @foreach($mensagem->topicos as $topico)
+                <div>{{$topico->topico}}</div>
+                @endforeach
+                @endif
+            </td>
+            <td>
+                <a href="{{route('mensagem.edit',$mensagem->id)}}" class="button">
                     Editar
                 </a>
             </td>
             <td>
-                <form method="POST" action="{{route('topico.destroy',$topico->id)}}" onsubmit="return confirm('tem certeza?');">
+                <form method="POST" action="{{route('mensagem.destroy',$mensagem->id)}}" onsubmit="return confirm('tem certeza?');">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="button">
@@ -31,7 +43,7 @@
                 </form>
             </td>
         </tr>
-         @endoforeach
+        @endforeach
     </tbody>
 </table>
 @endsection

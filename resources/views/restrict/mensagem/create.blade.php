@@ -9,7 +9,7 @@
 </ul>
 @endif
 <form method="POST" action="{{url('mensagem')}}" enctype="multipart/form-data">
-    @crsf
+    @csrf
     @method('POST')
     <div>
         <label for="titulo">Título</label>
@@ -22,7 +22,7 @@
     <div>
         <label>
             Tópicos
-            <a href="{{rul('topico/create')}}" class="button">Add Tópico</a>
+            <a href="{{url('topico/create')}}" class="button">Add Tópico</a>
         </label>
         <div class="sub">
             @foreach($topicos as $topico)

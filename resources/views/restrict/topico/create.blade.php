@@ -1,6 +1,6 @@
-@extends('restrict.tayout')
+@extends('restrict.layout')
 
-@seciotn('content')
+@section('content')
 @if(count($errors) > 0)
 <ul class="validator">
     @foreach($errors->all() as $error)
@@ -9,7 +9,7 @@
 </ul>
 @endif
 <form method="POST" action="{{url('topico')}}" enctype="multipart/form-data">
-    @crsf
+    @csrf
     @method('POST')
     <div>
         <label for="topico">Tópico</label>

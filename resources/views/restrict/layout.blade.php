@@ -17,10 +17,10 @@
         <nav>
             <ul>
                 <li>
-                    <a href="{{url('/mensagem)}}">Mensagens</a>
+                    <a href="{{url('/mensagem')}}">Mensagens</a>
                 </li>
                 <li>
-                    <a href="{{url('/dashboard)}}">Usuários</a>
+                    <a href="{{url('/dashboard')}}">Usuários</a>
                 </li>
             </ul>
         </nav>
