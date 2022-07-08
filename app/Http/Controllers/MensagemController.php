@@ -74,7 +74,8 @@ class MensagemController extends Controller
      */
     public function edit(Mensagem $mensagem)
     {
-        //
+        $topicos = Topico::all();
+        return view("restrict/mensagem/edit", compact('topicos', 'mensagem'));
     }
 
     /**
@@ -86,7 +87,7 @@ class MensagemController extends Controller
      */
     public function update(Request $request, Mensagem $mensagem)
     {
-        $validated = $requeste->validade([
+        $validated = $request->validate([
             'titulo' => 'required|max:255',
             'mensagem' => 'required|max:255',
             'topico' => 'array|exists:App\Models\Topico,id'
@@ -94,8 +95,8 @@ class MensagemController extends Controller
         if ($validated) {
             $mensagem->titulo = $request->get('titulo');
             $mensagem->mensagem = $request->get('mensagem');
-            $mensagem->sabe();
-            $mensagem->topicos()->sync($request0->get('topico'));
+            $mensagem->save();
+            $mensagem->topicos()->sync($request->get('topico'));
             return redirect('mensagem');
         }
     }
