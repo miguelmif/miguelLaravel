@@ -12,7 +12,8 @@ class TopicoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    
+     public function index()
     {
         $topicos = Topico::all();
         return view("restrict/topico", compact('topicos'));
