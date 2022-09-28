@@ -75,6 +75,16 @@ class UserController extends Controller
         $validated = $request->validate([
             'token' => 'required|max:255',
         ]);
+        if ($validated) {
+            try {
+                $user = User::findOrFail(Auth::user()->id);
+                $user->token = $request->get('token');
+                $user->save();
+                return $this->success($user);
+            } catch (\Throwable $th) {
+                return $this->error("usuário não encontrado!!", 401, $th->getMessage());
+            }
+        }
     }
 
     /**
