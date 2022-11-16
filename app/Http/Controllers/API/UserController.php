@@ -4,12 +4,13 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Traits\ApiResponse;
-use Illuminate\Support\Facades\Auth;
+use App\Tratis\ApiResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    use ApiResponse;
     /**
      * Display a listing of the resource.
      *
@@ -70,7 +71,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         $validated = $request->validate([
             'token' => 'required|max:255',
@@ -82,7 +83,7 @@ class UserController extends Controller
                 $user->save();
                 return $this->success($user);
             } catch (\Throwable $th) {
-                return $this->error("usuário não encontrado!!", 401, $th->getMessage());
+                return $this->error("Usuário não encontrado!", 401, $th->getMessage());
             }
         }
     }

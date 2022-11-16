@@ -25,7 +25,7 @@ class GoogleServiceProvider extends ServiceProvider
     public function boot()
     {
         try {
-            Storage::extend('google', function($app, $config) {
+            \Storage::extend('google', function($app, $config) {
                 $options = [];
 
                 if (!empty($config['teamDriveId'] ?? null)) {

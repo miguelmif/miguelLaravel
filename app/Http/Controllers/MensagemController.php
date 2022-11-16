@@ -48,7 +48,7 @@ class MensagemController extends Controller
         ]);
         if ($validated) {
             $mensagem = new Mensagem();
-            $mensagem->user_id = Auth::user()->id;
+            $mensagem-> user_id = Auth::user()->id;
             $mensagem->titulo = $request->get('titulo');
             $mensagem->mensagem = $request->get('mensagem');
             // $name = $request->file('imagem')->getClientOriginalName();

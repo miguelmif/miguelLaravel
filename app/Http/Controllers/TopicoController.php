@@ -12,8 +12,7 @@ class TopicoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
-     public function index()
+    public function index()
     {
         $topicos = Topico::all();
         return view("restrict/topico", compact('topicos'));
@@ -40,7 +39,7 @@ class TopicoController extends Controller
         $validated = $request->validate([
             'topico' => 'required|max:255',
         ]);
-        if ($validated){
+        if($validated){
             $topico = new Topico();
             $topico->topico = $request->get('topico');
             $topico->save();
