@@ -14,15 +14,15 @@
             <th>Imagem</th>
             <th>Editar</th>
             <th>Remover</th>
-        </tr>  
-    </thead>
-    <tbody>
+        </tr>
+    <thead>
+    <tbdody>
         @foreach($mensagens as $mensagem)
         <tr>
             <td>{{$mensagem->user->name}}</td>
             <td>{{$mensagem->titulo}}</td>
             <td>{{$mensagem->mensagem}}</td>
-            <td>
+            <td> 
                 @if($mensagem->topicos)
                 @foreach($mensagem->topicos as $topico)
                 <div>{{$topico->topico}}</div>
@@ -30,7 +30,8 @@
                 @endif
             </td>
             <td>
-                <img src="{{$mensagem->imagem}}" alt="{{$mensagem->titulo}}" class="showImg" />
+                <img src="{{$mensagem->imagem}}" alt="{{$mensagem->titulo}}" class="showImg"/>
+                
             </td>
             <td>
                 <a href="{{route('mensagem.edit',$mensagem->id)}}" class="button">
@@ -38,7 +39,7 @@
                 </a>
             </td>
             <td>
-                <form method="POST" action="{{route('mensagem.destroy',$mensagem->id)}}" onsubmit="return confirm('tem certeza?');">
+                <form method="POST" action="{{route('mensagem.destroy',$mensagem->id)}}" onsubmit="return confirm('Tem certeza?');">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="button">

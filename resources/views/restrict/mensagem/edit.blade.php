@@ -1,28 +1,28 @@
 @extends('restrict.layout')
 
 @section('content')
-@if(count($errors)>0)
+@if(count($errors) > 0)
 <ul class="validator">
     @foreach($errors->all() as $error)
     <li>{{$error}}</li>
     @endforeach
 </ul>
 @endif
-<form method="POST" action="{{url('mensagem',$mensagem->id)}}" enctype="multipart/form-data">
+<form method="POST" action="{{url('mensagem', $mensagem->id)}}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div>
         <label for="titulo">Título</label>
-        <input type="text" name="titulo" id="titulo" value="{{$mensagem->titulo}}" required />
+        <input type="text" name="titulo" id = "titulo" value="{{ $mensagem->titulo }}" required/>
     </div>
     <div>
         <label for="msg">Mensagem</label>
-        <textarea name="mensagem" id="msg" required> {{$mensagem->mensagem}}</textarea>
+        <textarea name="mensagem" id="msg" required>{{ $mensagem->mensagem}} </textarea>
     </div>
     <div>
         <label>
             Tópicos
-            <a href="{{url('topico/create')}}" class="button">Add Tópico</a>
+            <a href="{{url('topico/create')}}" class="button">Novo Tópico</a>
         </label>
         <div class="sub">
             @foreach($topicos as $topico)
@@ -36,9 +36,10 @@
     </div>
     <div>
         <label for="img">Imagem</label>
-        <input type="file" name="imagem" id="img" accept="image/*" required />
-        <!-- <img src="{{Storage::url($mensagem->imagem)}}" alt="{{$mensagem->titulo}}" class="showImg" /> -->
-        <img src="{{$mensagem->imagem}}" alt="{{$mensagem->titulo}}" class="showImg" />
+        <input type="file" name="imagem" id="img" accept="image/*" required/>
+           
+           <img src="{{$mensagem->imagem}}" alt="{{$mensagem->titulo}}" class="showImg"/>
+    </div>
     <button type="submit" class="button">Salvar</button>
 </form>
 @endsection
